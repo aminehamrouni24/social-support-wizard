@@ -1,183 +1,263 @@
-# Social Support Portal – AI-Assisted Government Application Wizard
+# Social Support Portal Wizard
 
-A modern, multilingual government assistance portal designed to simplify the financial aid application process through guided workflows, accessibility-first design, and AI-assisted content generation.
+<p align="center">
+  <img src="./docs/hero.png" alt="Social Support Portal" width="100%" />
+</p>
 
-Built as a Senior Frontend Engineering case study, this project demonstrates how complex citizen-facing services can be transformed into intuitive digital experiences while maintaining scalability, performance, and maintainability.
-
----
-
-## Overview
-
-Citizens applying for social support often struggle with lengthy forms and writing clear explanations of their circumstances.
-
-This application addresses that challenge through:
-
-* A guided multi-step application experience
-* Real-time validation and progress tracking
-* AI-assisted statement generation
-* Arabic and English support with full RTL compatibility
-* Automatic draft persistence
-* Accessibility-focused interactions
-* Mobile-first responsive design
-
-The result is a user experience inspired by modern government digital services and citizen portals.
+<p align="center">
+  <strong>AI-Assisted Government Application Portal</strong><br/>
+  A multilingual, accessible, and responsive citizen support platform built with React, TypeScript, and Material UI.
+</p>
 
 ---
 
-## Live Application
+## Live Demo
 
 🔗 https://social-support-wizard-x2eh.vercel.app/
 
-## Source Code
+## GitHub Repository
 
 🔗 https://github.com/aminehamrouni24/social-support-wizard
 
 ---
 
-# Key Capabilities
+# Project Overview
 
-## Intelligent Application Experience
+This application was developed as part of a Senior Frontend Developer technical assessment.
 
-The portal guides applicants through a structured process:
+The objective was to design and build a modern social support application portal that helps citizens complete financial assistance requests through a guided workflow and AI-powered writing assistance.
+
+The application focuses on:
+
+* Excellent user experience
+* Accessibility
+* Multilingual support
+* Responsive design
+* Form validation
+* State persistence
+* AI-assisted content generation
+
+---
+
+# Application Flow
+
+```mermaid
+flowchart LR
+
+A[Personal Information]
+--> B[Family & Financial Information]
+
+B --> C[Situation Description]
+
+C --> D[AI Assistance]
+
+D --> E[Review]
+
+E --> F[Submit Application]
+```
+
+---
+
+# AI Assistance Flow
+
+```mermaid
+sequenceDiagram
+
+participant User
+participant Portal
+participant AI Service
+participant OpenAI
+
+User->>Portal: Click "Help Me Write"
+
+Portal->>AI Service: Generate Request
+
+AI Service->>OpenAI: Chat Completion
+
+OpenAI-->>AI Service: Suggested Response
+
+AI Service-->>Portal: Generated Text
+
+Portal-->>User: Accept / Edit / Discard
+```
+
+---
+
+# Architecture Overview
+
+```mermaid
+flowchart TD
+
+User --> Form
+
+Form --> ReactHookForm
+
+ReactHookForm --> ZodValidation
+
+ZodValidation --> WizardContext
+
+WizardContext --> LocalStorage
+
+WizardContext --> AIService
+
+AIService --> OpenAI
+
+WizardContext --> SubmissionService
+```
+
+---
+
+# Key Features
+
+## Multi-Step Wizard
+
+The application is divided into four stages:
 
 ### Step 1 — Personal Information
 
-Collects identity and contact details.
+Collects:
+
+* Full Name
+* National ID
+* Date of Birth
+* Gender
+* Address
+* City
+* State
+* Country
+* Phone Number
+* Email
 
 ### Step 2 — Family & Financial Information
 
-Captures household and financial status.
+Collects:
+
+* Marital Status
+* Dependents
+* Employment Status
+* Monthly Income
+* Housing Status
 
 ### Step 3 — Situation Description
 
-Allows applicants to explain their circumstances with optional AI assistance.
+Applicants can explain:
+
+* Current Financial Situation
+* Employment Circumstances
+* Reason for Applying
+
+Each section includes AI-powered writing assistance.
 
 ### Step 4 — Review & Submission
 
-Final review before submission.
+Users can review and submit their application.
 
 ---
 
-## AI-Assisted Citizen Support
+# AI-Assisted Writing
 
-One of the biggest barriers to successful applications is explaining personal situations clearly.
+The portal includes an AI assistant designed to help applicants draft clear and professional descriptions of their circumstances.
 
-To improve accessibility and completion rates, the portal includes a contextual AI assistant that helps applicants draft:
+Features:
 
-* Financial hardship statements
-* Employment circumstances
-* Application justifications
-
-Users remain in control and can:
-
-* Accept suggestions
-* Edit suggestions
-* Discard suggestions
-
-This mirrors real-world AI augmentation patterns increasingly adopted across public-sector digital services.
+* Context-aware text generation
+* Editable suggestions
+* Accept or discard workflow
+* Error handling
+* Loading states
+* Mock mode fallback
 
 ---
 
-## Government-Ready User Experience
+# Accessibility
 
-### Accessibility First
-
-Designed with accessibility as a core requirement rather than an afterthought.
+Accessibility was treated as a core requirement.
 
 Implemented features include:
 
+* Semantic HTML
 * Keyboard navigation
-* ARIA support
-* Semantic structure
-* Screen-reader compatibility
-* Accessible validation feedback
+* ARIA labels
+* Screen-reader support
+* Accessible validation messages
+* Focus management
 
-### Multilingual Experience
+Target: WCAG AA compliance principles.
 
-The portal supports:
+---
+
+# Internationalization
+
+The application supports:
 
 * English
 * Arabic
 * Runtime language switching
-* Full Right-to-Left layout support
+* Full RTL layout support
 
-### Resilience
+The interface dynamically updates direction and content without page reloads.
 
-Users can safely leave and return without losing progress.
+---
 
-Features include:
+# Local Persistence
+
+User progress is automatically saved.
+
+Features:
 
 * Draft autosave
-* Local persistence
-* Recovery after refresh
-* Unsaved change protection
+* LocalStorage persistence
+* Recovery after page refresh
+* Unsaved changes protection
 
 ---
 
-# Technical Architecture
+# Responsive Design
 
-## Frontend Stack
+The interface is optimized for:
 
-| Technology      | Purpose              |
-| --------------- | -------------------- |
-| React 18        | UI framework         |
-| TypeScript      | Type safety          |
-| Vite            | Build tooling        |
-| Material UI     | Design system        |
-| React Hook Form | Form management      |
-| Zod             | Validation           |
-| React Context   | Global state         |
-| React-i18next   | Internationalization |
-| Axios           | API communication    |
+* Mobile devices
+* Tablets
+* Desktop environments
+
+The layout adapts automatically across screen sizes.
 
 ---
 
-## Architecture Principles
+# Screenshots
 
-The application was designed around several engineering principles:
+## Personal Information
 
-### Separation of Concerns
+![Personal Information](./docs/step1.png)
 
-UI components, business logic, services, state management, and validation are isolated into dedicated layers.
+## Family & Financial Information
 
-### Scalability
+![Family Information](./docs/step2.png)
 
-The architecture supports future expansion with:
+## AI Assistance
 
-* Additional application steps
-* Real backend integration
-* Authentication
-* Government service integrations
+![AI Assistance](./docs/step3.png)
 
-### Performance
+## Arabic RTL Experience
 
-Implemented optimizations include:
-
-* Route-level code splitting
-* Lazy-loaded form steps
-* Memoized expensive operations
-* Reduced initial bundle size
-
-### Maintainability
-
-The codebase prioritizes:
-
-* Strong TypeScript contracts
-* Reusable UI components
-* Consistent patterns
-* Predictable state management
+![RTL Mode](./docs/rtl.png)
 
 ---
 
-# AI Integration
+# Technology Stack
 
-The application supports OpenAI-powered assistance through environment variables.
-
-```env
-VITE_OPENAI_API_KEY=your_api_key
-```
-
-If no API key is configured, the application automatically falls back to mock AI responses to ensure the experience remains functional during evaluation.
+| Category             | Technology        |
+| -------------------- | ----------------- |
+| Framework            | React 18          |
+| Language             | TypeScript        |
+| Build Tool           | Vite              |
+| UI Library           | Material UI       |
+| Forms                | React Hook Form   |
+| Validation           | Zod               |
+| State Management     | React Context API |
+| Internationalization | React-i18next     |
+| HTTP Client          | Axios             |
+| AI Integration       | OpenAI API        |
 
 ---
 
@@ -203,23 +283,106 @@ src/
 
 ---
 
-# Future Evolution
+# Getting Started
 
-If this application were expanded into a production government platform, the next areas of investment would include:
+## Prerequisites
+
+* Node.js 18+
+* npm 9+
+
+## Installation
+
+```bash
+git clone https://github.com/aminehamrouni24/social-support-wizard.git
+
+cd social-support-wizard
+
+npm install
+```
+
+## Run Development Server
+
+```bash
+npm run dev
+```
+
+## Build Production Version
+
+```bash
+npm run build
+```
+
+## Preview Production Build
+
+```bash
+npm run preview
+```
+
+---
+
+# Environment Variables
+
+Create a `.env` file in the project root.
+
+```env
+VITE_OPENAI_API_KEY=your_openai_api_key
+```
+
+If no API key is provided, the application automatically falls back to a mock AI mode for evaluation purposes.
+
+---
+
+# Technical Decisions
+
+## Why React Hook Form?
+
+* Minimal re-renders
+* Excellent performance
+* Strong TypeScript support
+
+## Why Zod?
+
+* Runtime validation
+* Type-safe schemas
+* Predictable form behavior
+
+## Why Context API?
+
+* Lightweight solution for shared application state
+* Simpler than Redux for this scope
+
+## Why Local Storage?
+
+* Prevents accidental data loss
+* Improves citizen experience
+* Enables draft recovery
+
+## Why Lazy Loading?
+
+* Smaller initial bundle size
+* Faster initial page load
+* Better scalability
+
+---
+
+# Future Enhancements
+
+Potential production improvements include:
 
 * Authentication and identity verification
-* Backend workflow orchestration
 * Document uploads
-* Case management dashboards
-* Multi-agency integrations
+* Backend integration
+* Case management workflows
+* Government service integrations
 * Audit logging
 * Analytics and monitoring
-* Automated testing pipelines
+* Automated testing pipeline
+* CI/CD deployment workflows
 
 ---
 
 # Author
 
-Amine Hamrouni
+**Amine Hamrouni**
 
-Senior Frontend Developer 
+Senior Frontend Developer Candidate
