@@ -222,26 +222,7 @@ The interface is optimized for:
 
 The layout adapts automatically across screen sizes.
 
----
 
-# Screenshots
-
-## Personal Information
-
-![Personal Information](./docs/step1.png)
-
-## Family & Financial Information
-
-![Family Information](./docs/step2.png)
-## AI Assistance
-
-![AI Assistance](./docs/step3.png)
-
-## Arabic RTL Experience
-
-![RTL Mode](./docs/rtl.png)
-
----
 
 # Technology Stack
 
