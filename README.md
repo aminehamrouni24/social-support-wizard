@@ -233,7 +233,6 @@ The layout adapts automatically across screen sizes.
 ## Family & Financial Information
 
 ![Family Information](./docs/step2.png)
-
 ## AI Assistance
 
 ![AI Assistance](./docs/step3.png)
