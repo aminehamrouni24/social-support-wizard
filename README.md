@@ -1,128 +1,225 @@
-# Production-Grade Social Support Portal Wizard
+# Social Support Portal – AI-Assisted Government Application Wizard
 
-Welcome to the **Social Support Portal Wizard**, an enterprise-grade, accessible, multi-lingual government assistance portal. Built using modern frontend patterns and following strict CLEAN architecture rules, this portal demonstrates senior frontend engineering practices, type safety, modular services, dynamic state caching, and AI integration.
+A modern, multilingual government assistance portal designed to simplify the financial aid application process through guided workflows, accessibility-first design, and AI-assisted content generation.
 
----
-
-## 🚀 How to Run the Project
-
-### Prerequisites
-* **Node.js**: `>= 18.x`
-* **npm**: `>= 9.x`
-
-### Installation
-1. **Clone the repository and navigate to the project directory:**
-   ```bash
-   git clone <repository_url>
-   cd social-support-wizard
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-### Running Locally
-To start the local Vite development server with Hot Module Replacement (HMR):
-```bash
-npm run dev
-```
-
-### Production Build & Lint Checks
-To compile and build production-grade static assets:
-```bash
-npm run build
-```
-To run ESLint verification:
-```bash
-npm run lint
-```
+Built as a Senior Frontend Engineering case study, this project demonstrates how complex citizen-facing services can be transformed into intuitive digital experiences while maintaining scalability, performance, and maintainability.
 
 ---
 
-## 🔑 How to Set Up the OpenAI API Key
+## Overview
 
-This application features an **AI-Assisted Formulation Tool** ("Help Me Write") that connects to the OpenAI API. It helps applicants generate professional, administrative statements based on their form inputs.
+Citizens applying for social support often struggle with lengthy forms and writing clear explanations of their circumstances.
 
-1. Create a `.env` file in the root directory of the project.
-2. Add your OpenAI API key using the following environment variable:
-   ```env
-   # Optional: Add your OpenAI Key. If omitted, the portal will fall back to dynamic mock generation.
-   VITE_OPENAI_API_KEY=your_actual_openai_api_key_here
-   ```
-3. Restart the Vite development server (`npm run dev`) for the environment variables to take effect.
+This application addresses that challenge through:
 
-> **Note:** If the API key is omitted or left as the placeholder, the application gracefully falls back to a **mock generation mode** that simulates the API response. This ensures the app remains fully functional for evaluation without an active OpenAI subscription!
+* A guided multi-step application experience
+* Real-time validation and progress tracking
+* AI-assisted statement generation
+* Arabic and English support with full RTL compatibility
+* Automatic draft persistence
+* Accessibility-focused interactions
+* Mobile-first responsive design
+
+The result is a user experience inspired by modern government digital services and citizen portals.
 
 ---
 
-## 🏗️ Architecture Design & Folder Structure
+## Live Application
 
-This project follows strict separation of concerns, segregating business logic, UI presentation, validation, services, and localization.
+🔗 https://social-support-wizard-x2eh.vercel.app/
 
+## Source Code
+
+🔗 https://github.com/aminehamrouni24/social-support-wizard
+
+---
+
+# Key Capabilities
+
+## Intelligent Application Experience
+
+The portal guides applicants through a structured process:
+
+### Step 1 — Personal Information
+
+Collects identity and contact details.
+
+### Step 2 — Family & Financial Information
+
+Captures household and financial status.
+
+### Step 3 — Situation Description
+
+Allows applicants to explain their circumstances with optional AI assistance.
+
+### Step 4 — Review & Submission
+
+Final review before submission.
+
+---
+
+## AI-Assisted Citizen Support
+
+One of the biggest barriers to successful applications is explaining personal situations clearly.
+
+To improve accessibility and completion rates, the portal includes a contextual AI assistant that helps applicants draft:
+
+* Financial hardship statements
+* Employment circumstances
+* Application justifications
+
+Users remain in control and can:
+
+* Accept suggestions
+* Edit suggestions
+* Discard suggestions
+
+This mirrors real-world AI augmentation patterns increasingly adopted across public-sector digital services.
+
+---
+
+## Government-Ready User Experience
+
+### Accessibility First
+
+Designed with accessibility as a core requirement rather than an afterthought.
+
+Implemented features include:
+
+* Keyboard navigation
+* ARIA support
+* Semantic structure
+* Screen-reader compatibility
+* Accessible validation feedback
+
+### Multilingual Experience
+
+The portal supports:
+
+* English
+* Arabic
+* Runtime language switching
+* Full Right-to-Left layout support
+
+### Resilience
+
+Users can safely leave and return without losing progress.
+
+Features include:
+
+* Draft autosave
+* Local persistence
+* Recovery after refresh
+* Unsaved change protection
+
+---
+
+# Technical Architecture
+
+## Frontend Stack
+
+| Technology      | Purpose              |
+| --------------- | -------------------- |
+| React 18        | UI framework         |
+| TypeScript      | Type safety          |
+| Vite            | Build tooling        |
+| Material UI     | Design system        |
+| React Hook Form | Form management      |
+| Zod             | Validation           |
+| React Context   | Global state         |
+| React-i18next   | Internationalization |
+| Axios           | API communication    |
+
+---
+
+## Architecture Principles
+
+The application was designed around several engineering principles:
+
+### Separation of Concerns
+
+UI components, business logic, services, state management, and validation are isolated into dedicated layers.
+
+### Scalability
+
+The architecture supports future expansion with:
+
+* Additional application steps
+* Real backend integration
+* Authentication
+* Government service integrations
+
+### Performance
+
+Implemented optimizations include:
+
+* Route-level code splitting
+* Lazy-loaded form steps
+* Memoized expensive operations
+* Reduced initial bundle size
+
+### Maintainability
+
+The codebase prioritizes:
+
+* Strong TypeScript contracts
+* Reusable UI components
+* Consistent patterns
+* Predictable state management
+
+---
+
+# AI Integration
+
+The application supports OpenAI-powered assistance through environment variables.
+
+```env
+VITE_OPENAI_API_KEY=your_api_key
 ```
+
+If no API key is configured, the application automatically falls back to mock AI responses to ensure the experience remains functional during evaluation.
+
+---
+
+# Project Structure
+
+```text
 src/
-├── assets/         # Static assets and globally loaded media
-├── components/     # Reusable presentation and layout components
-│   ├── ai/         # AI Assistance modal and AI history side panel
-│   ├── common/     # Reusable layout fragments: Stepper, skeleton loader, error boundaries
-│   └── layout/     # Master page template structures (WizardLayout, themes)
-├── constants/      # Schema definitions, configuration parameters, validation logic
-├── context/        # Version-controlled global state provider (autosave cache)
-├── hooks/          # Custom hooks: useAIGeneration, useFormAnalytics
-├── i18n/           # Dynamic EN/AR react-i18next dictionary configurations
-├── pages/          # Router page controller (AppRoutes)
-├── steps/          # Code-splitted form step page components (lazy loaded)
-├── services/       # AI service and intercepted Mock API client layers
-├── types/          # Strict TypeScript contract interfaces
-└── main.tsx        # Dynamic system bootstrapper
-```
-
-### 🔁 Data & Integration Flow
-
-```mermaid
-graph TD
-    A[User Form Interaction] --> B[React Hook Form + Zod validation resolver]
-    B --> C[WizardContext Caching Layer]
-    C -->|Auto-saves debounced draft| D[Version-Controlled LocalStorage]
-    A -->|Trigger Help Me Write| E[AI Generation Hook: useAIGeneration]
-    E -->|Call OpenAI API / Abort Signal| F[AI Service: generateProfessionalStatement]
-    F -->|Accepted Text applied back| A
-    C -->|Trigger Submit Portal| G[API Service: submitSocialSupportApplication]
-    G -->|Intercept mock requests| H[Axios Mock Adapter]
-    H -->|Tracking ID / Error mode| A
+├── assets/
+├── components/
+│   ├── ai/
+│   ├── common/
+│   └── layout/
+├── constants/
+├── context/
+├── hooks/
+├── i18n/
+├── pages/
+├── services/
+├── steps/
+├── types/
+└── main.tsx
 ```
 
 ---
 
-## ⚡ Key Technical Features & Senior Engineering Standards
+# Future Evolution
 
-### 1. Robust State Persistence & Autosave (Zod Coercion)
-* **Debounced Autosave**: Draft states are cached in `localStorage` inside the central Context, debounced at `800ms` to protect browser execution.
-* **Schema Versioning**: LocalStorage keys are prefixed with version strings (e.g. `social_support_portal_draft_v1`), allowing future schema migrations.
-* **Unsaved Changes Notice**: Detects dirty state flags and alerts users with window `beforeunload` alerts when attempting to leave with unsubmitted forms.
+If this application were expanded into a production government platform, the next areas of investment would include:
 
-### 2. Multi-lingual Runtime & Full RTL Mirroring
-* **Dynamic Language Switcher**: Toggles seamlessly between **English (EN)** and **Arabic (AR)** using `react-i18next`.
-* **Zero-Reload Mirroring**: Leverages `@emotion/cache` and `stylis-plugin-rtl` to physically mirror the CSS CSSOM, offering a native experience for Arabic users.
-* **Multilingual Schemas**: Zod validation schemas are typed to output translation keys as error strings, supporting real-time runtime translation updates.
-
-### 3. WCAG AA Accessibility Standards
-* **Semantic HTML**: Structural dividers utilize proper semantic tags.
-* **ARIA Integrity**: Solved complex React 18 / Material-UI 5 Popover and Modal accessibility issues (e.g., properly mapping `aria-hidden` and explicitly disabling scroll locks to prevent descendant focus bugs).
-
-### 4. Code Splitting & Performance Optimizations
-* **Lazy Loading**: Form steps are split into separate script bundles loaded on-demand via `React.lazy` and `Suspense`.
-* **Rendering Guards**: Heavy layouts leverage memoization caches and use stable custom hook callbacks.
-
-### 5. OpenAI AI-Assisted Statement Formulation
-* Dedicated AI service wrapping OpenAI `chat/completions` endpoint.
-* Responsive guideline parameters allowing custom applicant instructions.
-* Supports **cancellation** (via AbortController) and automatic **retry** logic.
+* Authentication and identity verification
+* Backend workflow orchestration
+* Document uploads
+* Case management dashboards
+* Multi-agency integrations
+* Audit logging
+* Analytics and monitoring
+* Automated testing pipelines
 
 ---
 
-### Suggested Future Improvements
-1. **Testing Suite**: Implement comprehensive unit testing using Vitest and React Testing Library, and End-to-End (E2E) testing with Playwright.
-2. **Backend Integration**: Replace the Axios mock adapter with real REST or GraphQL endpoints.
-3. **CI/CD Pipelines**: Add GitHub Actions pipelines for automated linting, type-checking, testing, and deployments.
+# Author
+
+Amine Hamrouni
+
+Senior Frontend Developer 
