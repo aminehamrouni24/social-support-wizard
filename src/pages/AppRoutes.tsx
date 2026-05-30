@@ -3,7 +3,7 @@ import { useWizard } from '../context/WizardContext';
 import WizardLayout from '../components/layout/WizardLayout';
 import LoadingSkeleton from '../components/common/LoadingSkeleton';
 import ErrorBoundary from '../components/common/ErrorBoundary';
-
+// *********************************
 // Lazy load step components
 const PersonalInfoStep = lazy(() => import('../steps/PersonalInfoStep'));
 const FamilyFinancialStep = lazy(() => import('../steps/FamilyFinancialStep'));
